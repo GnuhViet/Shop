@@ -1,6 +1,9 @@
 package com.example.shopbanhang.listener;
 
 import com.example.shopbanhang.dao.MySQL;
+import com.example.shopbanhang.dao.UserDao;
+import com.example.shopbanhang.dao.impl.UserDaoImpl;
+import com.example.shopbanhang.model.User;
 
 import javax.servlet.ServletContextAttributeListener;
 import javax.servlet.ServletContextEvent;
@@ -14,7 +17,11 @@ import java.sql.Statement;
 public class DeployAppListener implements ServletContextListener, ServletContextAttributeListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        String sqlUserCreate = "CREATE TABLE IF NOT EXISTS USER (\n" +
+        UserDao dao = new UserDaoImpl();
+        Connection con = MySQL.getConnection();
+        Statement st = null;
+
+        String userTableCreate = "CREATE TABLE IF NOT EXISTS USER (\n" +
                 "    id int(11) NOT NULL AUTO_INCREMENT,\n" +
                 "    name varchar(45) DEFAULT NULL,\n" +
                 "    age int(11) DEFAULT NULL,\n" +
@@ -27,22 +34,32 @@ public class DeployAppListener implements ServletContextListener, ServletContext
                 "    CONSTRAINT PK_USER PRIMARY KEY (id),\n" +
                 "    CONSTRAINT UC_USER UNIQUE (username)\n" +
                 ");";
+
         try {
-            Connection con = MySQL.getConnection();
-            Statement st = con.createStatement();
-            st.executeUpdate(sqlUserCreate);
+            st = con.createStatement();
+            st.executeUpdate(userTableCreate);
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try { st.close(); } catch (SQLException ignore){}
         }
+
+        User admin = new User();
+        admin.setUsername("admin");
+        admin.setPassword("admin");
+
+        dao.add(admin);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         String sqlUserDrop = "DROP TABLE USER;";
+        String databaseDrop = "DROP DATABASE myshop";
         try {
             Connection con = MySQL.getConnection();
             Statement st = con.createStatement();
             st.executeUpdate(sqlUserDrop);
+            st.executeUpdate(databaseDrop);
         } catch (SQLException e) {
             e.printStackTrace();
         }
