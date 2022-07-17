@@ -33,6 +33,7 @@ public class RegisterController extends HttpServlet {
         user.setPassword(password);
         String status = UserService.add(user);
 
-        resp.sendRedirect("view/register.jsp?status=" + status);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/register.jsp?status=" + status);
+        dispatcher.forward(req, resp);
     }
 }

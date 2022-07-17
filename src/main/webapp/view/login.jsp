@@ -7,8 +7,11 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <jsp:include page="template/loginstyle.jsp"/>
+        <jsp:include page="template/webstyle.jsp"/>
     </head>
-    <body style="background-color: #666666;">
+    <body>
+        <jsp:include page="template/header.jsp"/>
+
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
@@ -40,7 +43,7 @@
                             </div>
 
                             <div>
-                                <a href="register.jsp" class="txt1">
+                                <a href="register" class="txt1">
                                     Register
                                 </a>
                             </div>
@@ -90,7 +93,9 @@
                 </div>
             </div>
         </div>
-        
+
+        <jsp:include page="template/footer.jsp"/>
+        <jsp:include page="template/webscript.jsp"/>
         <jsp:include page="template/loginscrip.jsp"/>
     </body>
 </html>

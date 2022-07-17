@@ -1,7 +1,5 @@
 package com.example.shopbanhang.controller;
 
-import com.example.shopbanhang.dao.UserDao;
-import com.example.shopbanhang.dao.impl.UserDaoImpl;
 import com.example.shopbanhang.dao.service.UserService;
 import com.example.shopbanhang.model.User;
 

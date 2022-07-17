@@ -7,8 +7,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <jsp:include page="template/loginstyle.jsp"/>
+        <jsp:include page="template/webstyle.jsp"/>
     </head>
-    <body style="background-color: #666666;">
+    <body>
+        <jsp:include page="template/header.jsp"/>
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
@@ -60,7 +62,7 @@
 
                         <div class="flex-sb-m w-full p-b-32">
                             <div>
-                                <a href="login.jsp" class="txt1">
+                                <a href="login" class="txt1">
                                     Login
                                 </a>
                             </div>
@@ -74,11 +76,13 @@
                         </div>
 
                     </form>
-                    <a href="${pageContext.request.contextPath}/home.jsp" class="login100-more" style="background-image: url('${pageContext.request.contextPath}/assets/images/bg-01.jpg');">
+                    <a href="home" class="login100-more" style="background-image: url('${pageContext.request.contextPath}/assets/images/bg-01.jpg');">
                     </a>
                 </div>
             </div>
         </div>
+        <jsp:include page="template/footer.jsp"/>
+        <jsp:include page="template/webscript.jsp"/>
         <jsp:include page="template/loginscrip.jsp"/>
 
     </body>
