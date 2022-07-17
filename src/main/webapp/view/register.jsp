@@ -95,7 +95,7 @@
                         </div>
 
                     </form>
-                    <a href="../index.jsp" class="login100-more" style="background-image: url('../assets/images/bg-01.jpg');">
+                    <a href="../home.jsp" class="login100-more" style="background-image: url('../assets/images/bg-01.jpg');">
                     </a>
                 </div>
             </div>

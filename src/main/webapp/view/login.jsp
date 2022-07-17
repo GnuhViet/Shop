@@ -7,7 +7,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
         <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
         <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
 
@@ -123,7 +122,7 @@
                         </div>
                     </form>
 
-                    <a href="../index.jsp" class="login100-more" style="background-image: url('../assets/images/bg-01.jpg');">
+                    <a href="../home.jsp" class="login100-more" style="background-image: url('../assets/images/bg-01.jpg');">
                     </a>
                 </div>
             </div>

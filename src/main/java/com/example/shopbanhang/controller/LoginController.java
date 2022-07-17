@@ -5,6 +5,7 @@ import com.example.shopbanhang.dao.impl.UserDaoImpl;
 import com.example.shopbanhang.dao.service.UserService;
 import com.example.shopbanhang.model.User;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +16,12 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/login"})
 public class LoginController extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher dispatcher = req.getRequestDispatcher("view/login.jsp");
+        dispatcher.forward(req, resp);
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String username = req.getParameter("username");
@@ -31,7 +38,7 @@ public class LoginController extends HttpServlet {
 
         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
             session.setAttribute("username", username);
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("home.jsp");
         } else {
             resp.sendRedirect("view/login.jsp?status=not-correct");
         }
