@@ -26,6 +26,11 @@ public class DeployAppListener implements ServletContextListener, ServletContext
                 "    name varchar(45) DEFAULT NULL,\n" +
                 "    age int(11) DEFAULT NULL,\n" +
                 "    gender varchar(10) DEFAULT NULL,\n" +
+                "    phone varchar(15) DEFAULT NULL,\n" +
+                "    address varchar(100) DEFAULT NULL,\n" +
+                "    country varchar(30) DEFAULT NULL,\n" +
+                "    region varchar(100) DEFAULT NULL,\n" +
+                "    email varchar(100) DEFAULT NULL,\n" +
                 "    username varchar(45) DEFAULT NULL,\n" +
                 "    password varchar(45) DEFAULT NULL,\n" +
                 "    role varchar(45) DEFAULT NULL,\n" +

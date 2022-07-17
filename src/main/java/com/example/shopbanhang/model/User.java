@@ -5,6 +5,11 @@ public class User {
     private String name;
     private int age;
     private String gender;
+    private String phone;
+    private String address;
+    private String country;
+    private String region;
+    private String email;
     private String username;
     private String password;
     private String role;
@@ -81,5 +86,45 @@ public class User {
 
     public void setLoginCounter(int loginCounter) {
         this.loginCounter = loginCounter;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

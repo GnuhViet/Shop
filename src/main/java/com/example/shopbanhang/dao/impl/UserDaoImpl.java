@@ -25,17 +25,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public String add(User user) {
         try {
-            String sql = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ? ,?, ?)";
+            String sql = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)";
             pre = con.prepareStatement(sql);
             pre.setInt(1, user.getId());
             pre.setString(2, user.getName());
             pre.setInt(3, user.getAge());
             pre.setString(4, user.getGender());
-            pre.setString(5, user.getUsername());
-            pre.setString(6, user.getPassword());
-            pre.setString(7, user.getRole());
-            pre.setString(8, user.getImage());
-            pre.setInt(9, user.getLoginCounter());
+            pre.setString(5, user.getPhone());
+            pre.setString(6, user.getAddress());
+            pre.setString(7, user.getCountry());
+            pre.setString(8, user.getRegion());
+            pre.setString(9, user.getEmail());
+            pre.setString(10, user.getUsername());
+            pre.setString(11, user.getPassword());
+            pre.setString(12, user.getRole());
+            pre.setString(13, user.getImage());
+            pre.setInt(14, user.getLoginCounter());
             pre.executeUpdate();
         } catch (SQLException e) {
             return "failed";
@@ -48,17 +53,22 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void update(User user) {
         try {
-            String sql = "UPDATE user SET name = ?, age = ?, gender = ?, username = ?, password = ?, role = ?, image = ?, login_counter = ? WHERE id = ?";
+            String sql = "UPDATE user SET name = ?, age = ?, gender = ?, phone = ?, address = ?, country = ?, region = ?, email = ?, username = ?, password = ?, role = ?, image = ?, login_counter = ? WHERE id = ?";
             pre = con.prepareStatement(sql);
-            pre.setInt   (9, user.getId());
+            pre.setInt   (14, user.getId());
             pre.setString(1, user.getName());
             pre.setInt   (2, user.getAge());
             pre.setString(3, user.getGender());
-            pre.setString(4, user.getUsername());
-            pre.setString(5, user.getPassword());
-            pre.setString(6, user.getRole());
-            pre.setString(7, user.getImage());
-            pre.setInt   (8, user.getLoginCounter());
+            pre.setString(4, user.getPhone());
+            pre.setString(5, user.getAddress());
+            pre.setString(6, user.getCountry());
+            pre.setString(7, user.getRegion());
+            pre.setString(8, user.getEmail());
+            pre.setString(9, user.getUsername());
+            pre.setString(10, user.getPassword());
+            pre.setString(11, user.getRole());
+            pre.setString(12, user.getImage());
+            pre.setInt   (13, user.getLoginCounter());
             pre.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -158,6 +168,11 @@ public class UserDaoImpl implements UserDao {
         user.setName(rs.getString("name"));
         user.setAge(rs.getInt("age"));
         user.setGender(rs.getString("gender"));
+        user.setPhone(rs.getString("phone"));
+        user.setAddress(rs.getString("address"));
+        user.setCountry(rs.getString("country"));
+        user.setRegion(rs.getString("region"));
+        user.setEmail(rs.getString("email"));
         user.setUsername(rs.getString("username"));
         user.setPassword(rs.getString("password"));
         user.setRole(rs.getString("role"));
