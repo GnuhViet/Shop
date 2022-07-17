@@ -32,15 +32,15 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession();
 
         if (u == null) {
-            resp.sendRedirect("view/login.jsp?status=not-exist");
+            resp.sendRedirect("login?status=not-exist");
             return;
         }
 
         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
             session.setAttribute("username", username);
-            resp.sendRedirect("home.jsp");
+            resp.sendRedirect("home");
         } else {
-            resp.sendRedirect("view/login.jsp?status=not-correct");
+            resp.sendRedirect("login?status=not-correct");
         }
     }
 }

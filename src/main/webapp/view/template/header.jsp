@@ -81,7 +81,7 @@
                         </c:when>
                         <c:otherwise>
                             <div class="dropdown-content">
-                                <a href="../account.jsp">Account settings</a>
+                                <a href="profile">Profile</a>
                                 <a href="logout">Logout</a>
                             </div>
                         </c:otherwise>

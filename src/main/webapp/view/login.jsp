@@ -6,50 +6,13 @@
         <title>Login</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="apple-touch-icon" href="../assets/img/apple-icon.png">
-        <link rel="shortcut icon" type="image/x-icon" href="../assets/img/favicon.ico">
-
-        <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="../assets/css/templatemo.css">
-        <link rel="stylesheet" href="../assets/css/custom.css">
-
-        <!-- Load fonts style after rendering the layout styles -->
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
-        <link rel="stylesheet" href="../assets/css/fontawesome.min.css">
-
-        <%--..--%>
-        <link rel="stylesheet" href="../assets/css/logindropdown.css">
-
-        <!--===============================================================================================-->
-        <link rel="icon" type="image/png" href="../assets/images/icons/favicon.ico"/>
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/bootstrap/css/bootstrap.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/webfonts/font-awesome-4.7.0/css/font-awesome.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/webfonts/Linearicons-Free-v1.0.0/icon-font.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/animate/animate.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/css-hamburgers/hamburgers.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/animsition/css/animsition.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/select2/select2.min.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/vendor/daterangepicker/daterangepicker.css">
-        <!--===============================================================================================-->
-        <link rel="stylesheet" type="text/css" href="../assets/css/util.css">
-        <link rel="stylesheet" type="text/css" href="../assets/css/loginmain.css">
-        <!--===============================================================================================-->
-
+        <jsp:include page="template/loginstyle.jsp"/>
     </head>
     <body style="background-color: #666666;">
         <div class="limiter">
             <div class="container-login100">
                 <div class="wrap-login100">
-                    <form action="../login" method="post" class="login100-form validate-form">
+                    <form action="login" method="post" class="login100-form validate-form">
 					<span class="login100-form-title p-b-43">
 						Login to continue
 					</span>
@@ -122,28 +85,12 @@
                         </div>
                     </form>
 
-                    <a href="../home.jsp" class="login100-more" style="background-image: url('../assets/images/bg-01.jpg');">
+                    <a href="${pageContext.request.contextPath}/home.jsp" class="login100-more" style="background-image: url('${pageContext.request.contextPath}/assets/images/bg-01.jpg');">
                     </a>
                 </div>
             </div>
         </div>
-
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/jquery/jquery-3.2.1.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/animsition/js/animsition.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/bootstrap/js/popper.js"></script>
-        <script src="../assets/vendor/bootstrap/js/bootstrap.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/select2/select2.min.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/daterangepicker/moment.min.js"></script>
-        <script src="../assets/vendor/daterangepicker/daterangepicker.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/vendor/countdowntime/countdowntime.js"></script>
-        <!--===============================================================================================-->
-        <script src="../assets/js/main.js"></script>
-
+        
+        <jsp:include page="template/loginscrip.jsp"/>
     </body>
 </html>
