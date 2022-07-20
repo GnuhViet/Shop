@@ -12,3 +12,4 @@
 
 <%--..--%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/logindropdown.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/avatar.css">

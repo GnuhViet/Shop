@@ -1,4 +1,4 @@
-package com.example.shopbanhang.controller;
+package com.example.shopbanhang.controller.user;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(urlPatterns = {"/home"})
-public class HomeController extends HttpServlet {
+@WebServlet(urlPatterns = {"/shop"})
+public class ShopController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = req.getRequestDispatcher("home.jsp");
-        requestDispatcher.forward(req, resp);
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/view/shop.jsp");
+        dispatcher.forward(req, resp);
     }
 }

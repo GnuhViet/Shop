@@ -73,7 +73,7 @@
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
                     <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
                     <c:choose>
-                        <c:when test="${sessionScope.username == null}">
+                        <c:when test="${sessionScope.user.username == null}">
                             <div class="dropdown-content">
                                 <a href="login">Login</a>
                                 <a href="register">Register</a>
@@ -81,6 +81,9 @@
                         </c:when>
                         <c:otherwise>
                             <div class="dropdown-content">
+                                <c:if test="${sessionScope.user.role == 'admin'}">
+                                    <a href="admin">Admin</a>
+                                </c:if>
                                 <a href="profile">Profile</a>
                                 <a href="logout">Logout</a>
                             </div>

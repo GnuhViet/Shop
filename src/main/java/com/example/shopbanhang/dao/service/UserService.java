@@ -38,4 +38,16 @@ public class UserService {
     public static List<User> search(String name) {
         return userDao.search(name);
     }
+
+    public static List<User> getAllUser() {
+        return userDao.getAllUser();
+    }
+
+    public static int getTotalUser() {
+        return userDao.getTotalUser();
+    }
+
+    public static List<User> getUserInRange(int start, int total) {
+        return userDao.getInRange(start, total);
+    }
 }

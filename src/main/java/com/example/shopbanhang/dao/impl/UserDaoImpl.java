@@ -162,6 +162,61 @@ public class UserDaoImpl implements UserDao {
         return users;
     }
 
+    @Override
+    public List<User> getAllUser() {
+        List<User> users = null;
+        try {
+            String sql = "SELECT * FROM user";
+            pre = con.prepareStatement(sql);
+            rs = pre.executeQuery();
+            users = new ArrayList<User>();
+            while (rs.next()) {
+                users.add(rowMap(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { pre.close(); rs.close(); } catch (SQLException ignore){}
+        }
+        return users;
+    }
+
+    public int getTotalUser() {
+        try {
+            String sql = "SELECT COUNT(*) FROM user";
+            pre = con.prepareStatement(sql);
+            rs = pre.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { pre.close(); rs.close(); } catch (SQLException ignore){}
+        }
+        return 0;
+    }
+
+    public List<User> getInRange(int start, int total){
+        List<User> users = null;
+        try {
+            String sql = "SELECT * FROM user LIMIT ?, ?";
+            pre = con.prepareStatement(sql);
+            pre.setInt(1, start);
+            pre.setInt(2, total);
+            rs = pre.executeQuery();
+            users = new ArrayList<User>();
+            while (rs.next()) {
+                users.add(rowMap(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try { pre.close(); rs.close(); } catch (SQLException ignore){}
+        }
+        return users;
+    }
+
     private User rowMap(ResultSet rs) throws SQLException {
         User user = new User();
         user.setId(rs.getInt("id"));

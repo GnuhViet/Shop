@@ -39,10 +39,25 @@ public class DeployAppListener implements ServletContextListener, ServletContext
                 "    CONSTRAINT PK_USER PRIMARY KEY (id),\n" +
                 "    CONSTRAINT UC_USER UNIQUE (username)\n" +
                 ");";
+        String categoryTableCreate = "CREATE TABLE IF NOT EXISTS category (\n" +
+                "    id int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "    name varchar(45) NOT NULL,\n" +
+                "    gender varchar(10) DEFAULT NULL,\n" +
+                "    price decimal(4,2) NOT NULL,\n" +
+                "    rating int(2) NOT NULL,\n" +
+                "    brand varchar(45) DEFAULT NULL,\n" +
+                "    description text DEFAULT NULL,\n" +
+                "    color text NOT NULL,\n" +
+                "    specification text NOT NULL,\n" +
+                "    size text NOT NULL,\n" +
+                "    image text NOT NULL,\n" +
+                "    CONSTRAINT PK_CATEGORY PRIMARY KEY (id)\n" +
+                ")";
 
         try {
             st = con.createStatement();
             st.executeUpdate(userTableCreate);
+            st.executeUpdate(categoryTableCreate);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
@@ -52,6 +67,8 @@ public class DeployAppListener implements ServletContextListener, ServletContext
         User admin = new User();
         admin.setUsername("admin");
         admin.setPassword("admin");
+        admin.setRole("admin");
+        admin.setImage("none.jpg");
 
         dao.add(admin);
     }
@@ -63,8 +80,8 @@ public class DeployAppListener implements ServletContextListener, ServletContext
         try {
             Connection con = MySQL.getConnection();
             Statement st = con.createStatement();
-            st.executeUpdate(sqlUserDrop);
-            st.executeUpdate(databaseDrop);
+            //st.executeUpdate(sqlUserDrop);
+            //st.executeUpdate(databaseDrop);
         } catch (SQLException e) {
             e.printStackTrace();
         }

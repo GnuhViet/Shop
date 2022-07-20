@@ -1,4 +1,4 @@
-package com.example.shopbanhang.controller;
+package com.example.shopbanhang.controller.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class LogoutController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getSession().removeAttribute("username");
-        resp.sendRedirect("home");
+        req.getSession().removeAttribute("user");
+        resp.sendRedirect("/home");
     }
 }

@@ -12,4 +12,7 @@ public interface UserDao {
     User get(int id);
     User getByUsername(String username);
     List<User> search(String name);
+    List<User> getAllUser();
+    int getTotalUser();
+    List<User> getInRange(int start, int total);
 }
