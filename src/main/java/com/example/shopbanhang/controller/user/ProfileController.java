@@ -31,7 +31,7 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Object obj = req.getSession().getAttribute("user");
         if (obj == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/ShopBanHang/login");
             return;
         }
 
@@ -50,7 +50,7 @@ public class ProfileController extends HttpServlet {
         Object obj = req.getSession().getAttribute("user");
 
         if (obj == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect("/ShopBanHang/login");
             return;
         }
 
@@ -66,7 +66,7 @@ public class ProfileController extends HttpServlet {
         user.setImage(saveAndGetFileName(req, user.getId()));
 
         UserService.update(user);
-        resp.sendRedirect("/profile?status=successfully");
+        resp.sendRedirect("/ShopBanHang/profile?status=successfully");
     }
 
 

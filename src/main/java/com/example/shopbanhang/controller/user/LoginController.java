@@ -30,16 +30,16 @@ public class LoginController extends HttpServlet {
         HttpSession session = req.getSession();
 
         if (u == null) {
-            resp.sendRedirect("/login?status=not-exist");
+            resp.sendRedirect("/ShopBanHang/login?status=not-exist");
             return;
         }
 
         if (u.getUsername().equals(username) && u.getPassword().equals(password)) {
             session.setAttribute("user", u);
 
-            resp.sendRedirect("/home");
+            resp.sendRedirect("/ShopBanHang/home");
         } else {
-            resp.sendRedirect("/login?status=not-correct");
+            resp.sendRedirect("/ShopBanHang/login?status=not-correct");
         }
     }
 }

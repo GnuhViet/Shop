@@ -1,6 +1,8 @@
-package com.example.shopbanhang.controller.admin.UserManager;
+package com.example.shopbanhang.controller.admin.ProductManager;
 
+import com.example.shopbanhang.dao.service.ProductService;
 import com.example.shopbanhang.dao.service.UserService;
+import com.example.shopbanhang.model.Product;
 import com.example.shopbanhang.model.User;
 
 import javax.servlet.RequestDispatcher;
@@ -12,24 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(urlPatterns = {"/admin/user"})
-public class UserManagerController extends HttpServlet {
+@WebServlet(urlPatterns = {"/admin/product"})
+public class ProductManagerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("table", "user");
+        req.setAttribute("table", "product");
 
-        final int USER_PER_PAGE = 11;
+        final int PRODUCT_PER_PAGE = 11;
 
-        int totalUser = 0;
+        int totalProduct = 0;
 
         String searchName = req.getParameter("search");
         if (searchName != null) {
-            totalUser = UserService.getTotalUser(searchName);
+            totalProduct = ProductService.getTotalProduct(searchName);
         } else {
-            totalUser = UserService.getTotalUser();
+            totalProduct = ProductService.getTotalProduct();
         }
 
-        int totalPages = totalUser / USER_PER_PAGE + 1;
+        int totalPages = totalProduct / PRODUCT_PER_PAGE + 1;
 
         int currentPage = 0;
         String viewPage = req.getParameter("page");
@@ -37,36 +39,37 @@ public class UserManagerController extends HttpServlet {
             currentPage = Integer.parseInt(req.getParameter("page")) - 1;
         }
 
-        int startIndex = currentPage * USER_PER_PAGE;
+        int startIndex = currentPage * PRODUCT_PER_PAGE;
 
-        List<User> users = null;
-        int lastPage = totalUser;
+        List<Product> products = null;
+        int lastPage = totalProduct;
         if (searchName != null) {
             if (currentPage == totalPages - 1) {
-                lastPage = totalUser % USER_PER_PAGE;
-                users = UserService.getUserInRange(startIndex, lastPage, searchName);
+                lastPage = totalProduct % PRODUCT_PER_PAGE;
+                products = ProductService.getInRange(startIndex, lastPage, searchName);
             } else {
-                users = UserService.getUserInRange(startIndex, USER_PER_PAGE, searchName);
+                products = ProductService.getInRange(startIndex, PRODUCT_PER_PAGE, searchName);
             }
         } else {
             if (currentPage == totalPages - 1) {
-                lastPage = totalUser % USER_PER_PAGE;
-                users = UserService.getUserInRange(startIndex, lastPage);
+                lastPage = totalProduct % PRODUCT_PER_PAGE;
+                products = ProductService.getInRange(startIndex, lastPage);
             } else {
-                users = UserService.getUserInRange(startIndex, USER_PER_PAGE);
+                products = ProductService.getInRange(startIndex, PRODUCT_PER_PAGE);
             }
         }
+        System.out.println(products);
 
         if (searchName != null) {
             req.setAttribute("search", searchName);
         }
-        req.setAttribute("userPerPage", Math.min(Math.min(totalUser, lastPage), USER_PER_PAGE));
+        req.setAttribute("userPerPage", Math.min(Math.min(totalProduct, lastPage), PRODUCT_PER_PAGE));
 
         req.setAttribute("totalPages", totalPages);
         req.setAttribute("currentPage", currentPage + 1);
         req.setAttribute("startIndex", startIndex);
-        req.setAttribute("totalUsers", totalUser);
-        req.setAttribute("users", users);
+        req.setAttribute("totalUsers", totalProduct);
+        req.setAttribute("products", products);
 
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/admin.jsp");

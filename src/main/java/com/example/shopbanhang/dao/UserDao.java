@@ -5,14 +5,12 @@ import com.example.shopbanhang.model.User;
 import java.util.List;
 
 public interface UserDao {
-    String add(User user);
+    String create(User user);
     void update(User user);
+    User read(int id);
     void delete(int id);
     void updateLoginCounter(int id, int counter);
-    User get(int id);
     User getByUsername(String username);
-    List<User> search(String name);
-    List<User> getAllUser();
-    int getTotalUser();
-    List<User> getInRange(int start, int total);
+    int getTotalUser(String name);
+    List<User> getInRange(int start, int total, String name);
 }

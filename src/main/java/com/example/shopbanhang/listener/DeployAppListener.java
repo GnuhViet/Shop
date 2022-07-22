@@ -39,12 +39,14 @@ public class DeployAppListener implements ServletContextListener, ServletContext
                 "    CONSTRAINT PK_USER PRIMARY KEY (id),\n" +
                 "    CONSTRAINT UC_USER UNIQUE (username)\n" +
                 ");";
-        String categoryTableCreate = "CREATE TABLE IF NOT EXISTS category (\n" +
+        String categoryTableCreate = "CREATE TABLE IF NOT EXISTS product (\n" +
                 "    id int(11) NOT NULL AUTO_INCREMENT,\n" +
+                "    type varchar(45) NOT NULL,\n" +
                 "    name varchar(45) NOT NULL,\n" +
                 "    gender varchar(10) DEFAULT NULL,\n" +
                 "    price decimal(4,2) NOT NULL,\n" +
-                "    rating int(2) NOT NULL,\n" +
+                "    rating decimal(4,2) DEFAULT 0,\n" +
+                "    rating_counter int(11) DEFAULT 0,\n" +
                 "    brand varchar(45) DEFAULT NULL,\n" +
                 "    description text DEFAULT NULL,\n" +
                 "    color text NOT NULL,\n" +
@@ -70,7 +72,7 @@ public class DeployAppListener implements ServletContextListener, ServletContext
         admin.setRole("admin");
         admin.setImage("none.jpg");
 
-        dao.add(admin);
+        dao.create(admin);
     }
 
     @Override

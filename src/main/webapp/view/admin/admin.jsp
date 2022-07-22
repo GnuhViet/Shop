@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/admin.css">
-    
+
     </head>
     <body>
         <div id="overlay" class="overlay"></div>
@@ -29,7 +29,7 @@
 
                 <ul>
                     <li>
-                        <a href="#"><i class="ion-bag"></i> <span>Shop</span></a>
+                        <a href="${pageContext.request.contextPath}/admin/product"><i class="ion-bag"></i> <span>Shop</span></a>
                         <ul class="nav-flyout">
                             <li>
                                 <a href="#"><i class="ion-ios-color-filter-outline"></i>Derps</a>
@@ -145,78 +145,8 @@
                 </ul>
             </nav>
         </aside>
-        <div class="container-fluid">
-            <div>
-                <div class="table-responsive">
-                    <div class="table-wrapper">
-                        <div class="table-title">
-                            <div class="row">
-                                <div class="col-sm-5" style="display: flex; align-items: baseline; gap: 0 10px">
-                                    <i id="menu-bar" style="font-size: 24px; cursor: pointer;" class="fa fa-bars" aria-hidden="true"></i>
-                                    <h2>User <b>Management</b></h2>
-                                </div>
-                                <div class="col-sm-7">
-                                    <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i>
-                                        <span>Add New User</span></a>
-                                    <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE24D;</i>
-                                        <span>Export to Excel</span></a>
-                                </div>
-                            </div>
-                        </div>
 
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Date Created</th>
-                                    <th>Role</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="u" items="${users}" varStatus="loop">
-                                    <tr>
-                                        <td>${loop.index + requestScope.startIndex}</td>
-                                        <td>
-                                            <a href="#"><img src="${pageContext.request.contextPath}/user-image/${u.image}" class="avatar" alt="Avatar" width="40"> ${u.name}</a>
-                                        </td>
-                                        <td>${u.age}</td>
-                                        <td>${u.role}</td>
-                                        <td><span class="status text-success">&bull;</span> Active</td>
-<%--                                        <td><span class="status text-danger">&bull;</span> Suspended</td>--%>
-<%--                                        <td><span class="status text-warning">&bull;</span> Inactive</td>--%>
-                                        <td>
-                                            <a href="${pageContext.request.contextPath}/admin/user/setting?id=${u.id}" class="settings" title="Settings" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a>
-                                            <a href="${pageContext.request.contextPath}/admin/user/remove?id=${u.id}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
-                                        </td>
-                                    </tr>
-                                </c:forEach>
-                            </tbody>
-                        </table>
-
-                        <div class="clearfix">
-                            <div class="hint-text">Showing <b>${requestScope.userPerPage}</b> out of <b>${requestScope.totalUsers}</b> entries</div>
-                            <ul class="pagination">
-                                <c:set var="c" value="${requestScope.currentPage}"/>
-                                <c:if test="${c > 1}">
-                                    <li class="page-item"><a href="${pageContext.request.contextPath}/admin/user?page=${c-1}" class="page-link">Previous</a></li>
-                                </c:if>
-                                <c:forEach varStatus="loop" begin="1" end="${requestScope.totalPages}" step="1">
-                                    <li class="page-item ${loop.index == c ? "" : "active"}">
-                                        <a href="${pageContext.request.contextPath}/admin/user?page=${loop.index}" class="page-link">${loop.index}</a>
-                                    </li>
-                                </c:forEach>
-                                <c:if test="${c < requestScope.totalPages}">
-                                    <li class="page-item"><a href="${pageContext.request.contextPath}/admin/user?page=${c+1}" class="page-link">Next</a></li>
-                                </c:if>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <jsp:include page="template/${requestScope.table}Table.jsp"/>
 
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>

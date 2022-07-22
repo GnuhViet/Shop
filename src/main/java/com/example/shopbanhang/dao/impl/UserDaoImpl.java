@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public String add(User user) {
+    public String create(User user) {
         try {
             String sql = "INSERT INTO user VALUES (?, ?, ?, ?, ?, ?, ?, ? ,?, ?, ?, ?, ?, ?)";
             pre = con.prepareStatement(sql);
@@ -107,7 +107,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User get(int id) {
+    public User read(int id) {
         try {
             String sql = "SELECT * FROM user WHERE id = ?";
             pre = con.prepareStatement(sql);
@@ -143,48 +143,11 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public List<User> search(String name) {
-        List<User> users = null;
+    public int getTotalUser(String name) {
         try {
-            String sql = "SELECT * FROM user WHERE name like ?";
+            String sql = "SELECT COUNT(*) FROM user WHERE name LIKE ?";
             pre = con.prepareStatement(sql);
             pre.setString(1, name + "%");
-            rs = pre.executeQuery();
-            users = new ArrayList<User>();
-            while (rs.next()) {
-                users.add(rowMap(rs));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try { pre.close(); rs.close(); } catch (SQLException ignore){}
-        }
-        return users;
-    }
-
-    @Override
-    public List<User> getAllUser() {
-        List<User> users = null;
-        try {
-            String sql = "SELECT * FROM user";
-            pre = con.prepareStatement(sql);
-            rs = pre.executeQuery();
-            users = new ArrayList<User>();
-            while (rs.next()) {
-                users.add(rowMap(rs));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            try { pre.close(); rs.close(); } catch (SQLException ignore){}
-        }
-        return users;
-    }
-
-    public int getTotalUser() {
-        try {
-            String sql = "SELECT COUNT(*) FROM user";
-            pre = con.prepareStatement(sql);
             rs = pre.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -197,13 +160,14 @@ public class UserDaoImpl implements UserDao {
         return 0;
     }
 
-    public List<User> getInRange(int start, int total){
+    public List<User> getInRange(int start, int total, String name){
         List<User> users = null;
         try {
-            String sql = "SELECT * FROM user LIMIT ?, ?";
+            String sql = "SELECT * FROM user WHERE name LIKE ? LIMIT ?, ?";
             pre = con.prepareStatement(sql);
-            pre.setInt(1, start);
-            pre.setInt(2, total);
+            pre.setString(1, name + "%");
+            pre.setInt(2, start);
+            pre.setInt(3, total);
             rs = pre.executeQuery();
             users = new ArrayList<User>();
             while (rs.next()) {
